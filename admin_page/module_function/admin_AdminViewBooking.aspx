@@ -16,20 +16,10 @@
                     <span>Admin View Booking</span>
                 </div>
                 <h2 class="az-content-title">Admin View Booking</h2>
-                <!-- <div class="az-content-label mg-b-5">Responsive DataTable</div>
-          <p class="mg-b-20">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
                 <div>
                     <div class="flex-wrap d-flex mg-b-20">
                         <div class="wd-25p mg-r-5">
                             <p class="mg-b-10">Building</p>
-                            <%--<select class="form-control select2-no-search">
-                                <option label="Choose one"></option>
-                                <option value="Firefox">Firefox</option>
-                                <option value="Chrome">Chrome</option>
-                                <option value="Safari">Safari</option>
-                                <option value="Opera">Opera</option>
-                                <option value="Internet Explorer">Internet Explorer</option>
-                            </select>--%>
                             <asp:DropDownList ID="ddBuilding"  CssClass="form-control" DataValueField="building_id" DataTextField="building_name" runat="server"></asp:DropDownList>
                         </div>
                         <div class="mx-wd-20p mg-r-5">
@@ -52,25 +42,12 @@
                         <div class="mg-t-15 mg-r-15">
                             <p></p>
                             <a href="#" id="btnLoc" runat="server" onserverclick="btnLoc_ServerClick" class="btn btn-primary btn-block ">Lọc</a>
-
                         </div>
                         <div class="mg-t-15">
                             <p></p>
                             <button class="btn btn-primary btn-block" id="btnXuatExcel" runat="server" onserverclick="btnXuatExcel_ServerClick">Xuất Excel</button>
-
-
                         </div>
                     </div>
-                    <%--<div class="row d-flex flex-row-reverse mg-b-20">
-
-                        <div class="col-sm-2 col-md-2">
-                            
-                        </div>
-                        <div class="col-sm-2 col-md-2">
-                            <button class="btn btn-primary btn-block" id="btnNhapExcel" runat="server" onserverclick="btnNhapExcel_ServerClick">Nhập Excel</button>
-                        </div>
-                       
-                    </div>--%>
                     <asp:Repeater ID="rpViewChitiet" runat="server">
                         <ItemTemplate>
                             <div id="modaldemo<%#Eval("order_id") %>" class="modal">
@@ -108,7 +85,6 @@
                                                 <div class="col-md-6 mg-t-10">Additional Room charge : <%#Eval("order_Additionalroomcharge","{0:0,0}") %> ₫</div>
                                                 <div class="col-md-6 mg-t-10">Special Request (if any) : <%#Eval("order_SpecialRequest") %></div>
                                                 <div class="col-md-6 mg-t-10">Other Collection for special request : <%#Eval("order_Collectionforspecialrequest","{0:0,0}") %></div>
-                                                
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +111,6 @@
                                 <th class="wd-5p">Ngày book</th>
                                 <th class="wd-5p">Tình Trạng</th>
                                 <th class="wd-5p">Chi tiết</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -155,7 +130,6 @@
                                         <td><%#Eval("order_kenhBook") %></td>
                                         <td><%#Eval("order_dateBook","{0:dd/MM/yyyy}") %></td>
                                         <td><%#Eval("order_status") %></td>
-                                        <%--<td><a id="<%#Eval("book_id") %>" href="javascript:void(0);" class="btn btn-primary" onclick="checkIRoom(<%#Eval("book_id") %>);btnShow();">Duyệt</a></td>--%>
                                         <td><a class="btn btn-primary btn-block" href="javascript:void(0);" data-toggle="modal" data-target="#modaldemo<%#Eval("order_id") %>" onclick="getIRoom(<%#Eval("order_id") %>);">C.Tiết</a></td>
                                     </tr>
                                 </ItemTemplate>

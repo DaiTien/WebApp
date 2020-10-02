@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="tri33128_webtriple" Class="dbcsdlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=112.78.2.76,1433;Initial Catalog=tri33128_webtriple;Persist Security Info=True;User ID=tri33128_webtriple" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="admin_tripleConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="tri33128_webtriple.tbTienIchToaNhaTrongBuilding" Member="tbTienIchToaNhaTrongBuildings">
+    <Type Name="tbTienIchToaNhaTrongBuilding">
+      <Column Name="tienichBD_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tag_listing" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tienichBD_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_AccessGroupUserForm" Member="admin_AccessGroupUserForms">
+    <Type Name="admin_AccessGroupUserForm">
+      <Column Name="guf_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="guf_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groupuser_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="form_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="admin_Form_admin_AccessGroupUserForm" Member="admin_Form" ThisKey="form_id" OtherKey="form_id" Type="admin_Form" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="admin_GroupUser_admin_AccessGroupUserForm" Member="admin_GroupUser" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_GroupUser" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_AccessGroupUserModule" Member="admin_AccessGroupUserModules">
+    <Type Name="admin_AccessGroupUserModule">
+      <Column Name="gum_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="gum_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groupuser_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="module_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="admin_GroupUser_admin_AccessGroupUserModule" Member="admin_GroupUser" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_GroupUser" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="admin_Module_admin_AccessGroupUserModule" Member="admin_Module" ThisKey="module_id" OtherKey="module_id" Type="admin_Module" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_AccessUserForm" Member="admin_AccessUserForms">
+    <Type Name="admin_AccessUserForm">
+      <Column Name="uf_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="uf_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="username_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="form_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="admin_Form_admin_AccessUserForm" Member="admin_Form" ThisKey="form_id" OtherKey="form_id" Type="admin_Form" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="admin_User_admin_AccessUserForm" Member="admin_User" ThisKey="username_id" OtherKey="username_id" Type="admin_User" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_Form" Member="admin_Forms">
+    <Type Name="admin_Form">
+      <Column Name="form_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="form_position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="form_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="form_link" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="form_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="module_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="admin_Form_admin_AccessGroupUserForm" Member="admin_AccessGroupUserForms" ThisKey="form_id" OtherKey="form_id" Type="admin_AccessGroupUserForm" />
+      <Association Name="admin_Form_admin_AccessUserForm" Member="admin_AccessUserForms" ThisKey="form_id" OtherKey="form_id" Type="admin_AccessUserForm" />
+      <Association Name="admin_Module_admin_Form" Member="admin_Module" ThisKey="module_id" OtherKey="module_id" Type="admin_Module" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_GroupUser" Member="admin_GroupUsers">
+    <Type Name="admin_GroupUser">
+      <Column Name="groupuser_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="groupuser_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="groupuser_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="admin_GroupUser_admin_AccessGroupUserForm" Member="admin_AccessGroupUserForms" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_AccessGroupUserForm" />
+      <Association Name="admin_GroupUser_admin_AccessGroupUserModule" Member="admin_AccessGroupUserModules" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_AccessGroupUserModule" />
+      <Association Name="admin_GroupUser_admin_User" Member="admin_Users" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_Module" Member="admin_Modules">
+    <Type Name="admin_Module">
+      <Column Name="module_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="module_position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="module_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="module_icon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="module_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="admin_Module_admin_AccessGroupUserModule" Member="admin_AccessGroupUserModules" ThisKey="module_id" OtherKey="module_id" Type="admin_AccessGroupUserModule" />
+      <Association Name="admin_Module_admin_Form" Member="admin_Forms" ThisKey="module_id" OtherKey="module_id" Type="admin_Form" />
+    </Type>
+  </Table>
+  <Table Name="dbo.admin_User" Member="admin_Users">
+    <Type Name="admin_User">
+      <Column Name="username_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username_username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username_password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username_fullname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username_gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="username_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="groupuser_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="admin_User_admin_AccessUserForm" Member="admin_AccessUserForms" ThisKey="username_id" OtherKey="username_id" Type="admin_AccessUserForm" />
+      <Association Name="admin_GroupUser_admin_User" Member="admin_GroupUser" ThisKey="groupuser_id" OtherKey="groupuser_id" Type="admin_GroupUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbAccount" Member="tbAccounts">
+    <Type Name="tbAccount">
+      <Column Name="account_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="account_fullname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="account_passport" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="account_country" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbBuilding" Member="tbBuildings">
+    <Type Name="tbBuilding">
+      <Column Name="building_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="building_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="city_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="meta_keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="link_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="title_web" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="h1_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lng" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="building_introduce" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbChinhSachHuy" Member="tbChinhSachHuys">
+    <Type Name="tbChinhSachHuy">
+      <Column Name="chinhsach_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="chinhsach_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="chinhsach_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="chinhsach_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbCity" Member="tbCities">
+    <Type Name="tbCity">
+      <Column Name="city_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="city_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="city_img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="location_lat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="location_lng" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="city_linkmmap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="city_zoom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbCountry" Member="tbCountries">
+    <Type Name="tbCountry">
+      <Column Name="country_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="country_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="country_nameacronyms" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="country_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbCustomerFeedback" Member="tbCustomerFeedbacks">
+    <Type Name="tbCustomerFeedback">
+      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="customer_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="customer_country" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="customer_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="customer_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="customer_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="customer_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbCustomerReviews" Member="tbCustomerReviews">
+    <Type Name="tbCustomerReview">
+      <Column Name="review_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="review_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="review_hotel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="review_checkin" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="review_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="review_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="review_checkout" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbImageBuilding" Member="tbImageBuildings">
+    <Type Name="tbImageBuilding">
+      <Column Name="imgbuilding_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="imgbuilding_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="imgbuilding_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="tag_listing" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbIntroduce" Member="tbIntroduces">
+    <Type Name="tbIntroduce">
+      <Column Name="introduct_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="introduce_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="introduce_summary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="introduce_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="inrtroduce_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="inrtroduce_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="meta_keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="link_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="introduce_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbKhuyenMai" Member="tbKhuyenMais">
+    <Type Name="tbKhuyenMai">
+      <Column Name="km_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="km_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="km_fromdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="km_todate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="km_price" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="km_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="km_tagThu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbLienHe" Member="tbLienHes">
+    <Type Name="tbLienHe">
+      <Column Name="lienhe_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lienhe_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_summary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_zalo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_sky" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_facebook" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_instargram" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_wechat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_whatapp" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_twiter" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_viber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_website" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="lienhe_linkedin" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbListing" Member="tbListings">
+    <Type Name="tbListing">
+      <Column Name="listing_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="listing_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listing_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listing_summary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listing_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="listing_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="meta_keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="link_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="title_web" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="h1_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listing_amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_special" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="listing_Adults" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_children" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbLoaiTienIchXungQuanh" Member="tbLoaiTienIchXungQuanhs">
+    <Type Name="tbLoaiTienIchXungQuanh">
+      <Column Name="loaitienich_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="loaitienich_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="loaitienich_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbLockRoom" Member="tbLockRooms">
+    <Type Name="tbLockRoom">
+      <Column Name="lookroom_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="lookroom_dateStart" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="lookroom_dateEnd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="room_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lookroom_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="lockroom_tinhtrang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbNews" Member="tbNews">
+    <Type Name="tbNew">
+      <Column Name="news_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="news_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="news_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="news_summary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="news_content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="news_createdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="news_show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="newscate_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="title_web" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="h1_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="link_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbNewsCate" Member="tbNewsCates">
+    <Type Name="tbNewsCate">
+      <Column Name="newscate_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="newscate_position" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="newscate_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="newscate_datecreate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="newscate_show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="language_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="title_web" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_keywords" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="h1_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="link_seo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="meta_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbOrderDetail" Member="tbOrderDetails">
+    <Type Name="tbOrderDetail">
+      <Column Name="orderdetail_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbPriceByDay" Member="tbPriceByDays">
+    <Type Name="tbPriceByDay">
+      <Column Name="day_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="day_dayofweek" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="day_price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="day_pricepecent" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="day_pricesale" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbQuanLyBook" Member="tbQuanLyBooks">
+    <Type Name="tbQuanLyBook">
+      <Column Name="book_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="book_checkin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="book_checkout" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="book_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_nationality" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listring_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="book_dateBook" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="book_codeTrading" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_active" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_amount" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="book_loaigia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_giaShow" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_nameCTKM" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_priceRoom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_nameGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_IdGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_kenhBook" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="book_ghiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="book_IN" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbRoom" Member="tbRooms">
+    <Type Name="tbRoom">
+      <Column Name="room_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="room_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="room_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbSlide" Member="tbSlides">
+    <Type Name="tbSlide">
+      <Column Name="slide_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="slide_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="slide_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="slide_link" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="slide_active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="slidecate_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbTienIchToaNha" Member="tbTienIchToaNhas">
+    <Type Name="tbTienIchToaNha">
+      <Column Name="pr_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pr_image" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="pr_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbTienIchXQBuilding" Member="tbTienIchXQBuildings">
+    <Type Name="tbTienIchXQBuilding">
+      <Column Name="tienichxungquanhbuilding_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tienich_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbTienIchXungQuanh" Member="tbTienIchXungQuanhs">
+    <Type Name="tbTienIchXungQuanh">
+      <Column Name="tienich_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tienich_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="loaitienich_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tienich_lat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tienich_long" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="tienich_img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbDayOfWeek" Member="tbDayOfWeeks">
+    <Type Name="tbDayOfWeek">
+      <Column Name="day_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="day_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbDichVu" Member="tbDichVus">
+    <Type Name="tbDichVu">
+      <Column Name="dv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dv_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="dv_thongtin" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="dv_ngay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dv_price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dv_codeTrading" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dv_Servicecharge" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dv_paid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dv_total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbImageIntroduce" Member="tbImageIntroduces">
+    <Type Name="tbImageIntroduce">
+      <Column Name="img_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="img_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbOrderDetailDatePrice" Member="tbOrderDetailDatePrices">
+    <Type Name="tbOrderDetailDatePrice">
+      <Column Name="oddp_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="oddp_date" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="oddp_price" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="oddp_activekhuyenmai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="listing_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbMucDoiDiem" Member="tbMucDoiDiems">
+    <Type Name="tbMucDoiDiem">
+      <Column Name="mdd_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mdd_Roomprice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mdd_Eatprice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mdd_Triplemoney" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tri33128_webtriple.tbDiemTichLuy" Member="tbDiemTichLuys">
+    <Type Name="tbDiemTichLuy">
+      <Column Name="dtl_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="order_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtl_sumRoomprice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtl_sumEatprice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtl_IdGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="dtl_diemtichluy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtl_hangGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbOrder" Member="tbOrders">
+    <Type Name="tbOrder">
+      <Column Name="order_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="order_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_checkin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="order_checkout" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="order_amount" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_totalprice" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_checkintime" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_nationality" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_linkcustomer" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_someoneelse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="listring_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="building_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_dateBook" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="account_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_codeTrading" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_loaiGia" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_priceShow" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_nameCTKM" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_priceRoom" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_nameGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_IdGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_country" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_kenhBook" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_hidden" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="order_passport" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_guestNgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="order_guestEmail" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_guestPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_guestNgheNghiep" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_phuongtienlienlackhac" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_diadiemotruockhitoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_diadiemdensaukhidi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_dukienthoigianquaylai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_diadiemneuquaylai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_dukienthoigianoneuquaylai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_lydo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_tienquydoitudiemtichluy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_tieutientichluy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_ngaytieutientichluy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_dichvutieutientichluy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_khuvucdialy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_gopykhachhang" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_diemtichluy" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_Ghichu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_IN" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="order_status" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_Show" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="order_adults" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_childrens" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_SpecialRequest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_Extrabed" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_CollectAccount" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_Collectionforspecialrequest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_OTATABookingID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_Additionalroomcharge" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_PaywhenCheckin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_NumberofAdult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_NumberofU712Child" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_RoomPrepaid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="order_timeCheckOut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="order_tinhcach" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_matutangbook" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="order_matutangGuest" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

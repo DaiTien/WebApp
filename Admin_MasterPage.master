@@ -1,0 +1,248 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin_MasterPage.master.cs" Inherits="Admin_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="BootstrapDash">
+
+    <title>Admin Triple</title>
+
+    <!-- vendor css -->
+    <link href="/admin_css/css_triple/all.min.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/ionicons.min.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/typicons.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/select2.min.css" rel="stylesheet">
+    <link href="/admin_css/css_triple/stylenew.css" rel="stylesheet">
+
+    <!-- azia CSS -->
+    <link rel="stylesheet" href="/admin_css/css_triple/azia.css">
+    <asp:ContentPlaceHolder ID="headlink" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" ID="src"></asp:ScriptManager>
+        <div class="az-header">
+            <div class="container">
+                <div class="az-header-left">
+                    <a href="javascript:void(0);" class="az-logo"><span></span>Triple</a>
+                    <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+                </div>
+                <!-- az-header-left -->
+                <div class="az-header-menu">
+                    <div class="az-header-menu-header">
+                        <a href="#" class="az-logo"><span></span>Triple</a>
+                        <a href="#" class="close">&times;</a>
+                    </div>
+                    <!-- az-header-menu-header -->
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#" <%=hiddenAdmin %> class="nav-link with-sub"><i class="typcn typcn-chart-area-outline"></i>Admin</a>
+                            <div class="az-menu-sub">
+                                <nav class="nav">
+                                    <a href="/admin-view-booking" class="nav-link">View Booking</a>
+                                    <a href="/admin-view-guest" class="nav-link">View Guest</a>
+                                    <a href="/admin-phan-quyen" class="nav-link">Phân Quyền</a>
+                                    <a href="/admin-exchange" class="nav-link">Admin Exchange</a>
+                                    <a href="/admin-guest-point" class="nav-link">Guest Point</a>
+
+                                </nav>
+                            </div>
+                            <!-- az-menu-sub -->
+                        </li>
+                        <li class="nav-item" <%=hiddenBooking %>>
+                            <a href="#" class="nav-link with-sub "><i class="typcn typcn-folder"></i>Input</a>
+                            <div class="az-menu-sub">
+                                <nav class="nav">
+                                    <a href="/admin-book-update-status" class="nav-link">Quản lý lưu trú</a>
+                                    <a href="/admin-danh-sach-booking" class="nav-link">Danh sách booking</a>
+                                    <a href="/admin-danh-sach-guest" class="nav-link">Danh sách Guest</a>
+                                    <a href="/admin-guest-point" class="nav-link">Guest Point</a>
+                                </nav>
+                            </div>
+                            <!-- az-menu-sub -->
+                        </li>
+                        <li class="nav-item" <%=hiddenVetify %>>
+                            <a href="#" class="nav-link with-sub"><i class="typcn typcn-document"></i>Verify</a>
+                            <nav class="az-menu-sub">
+                                <a href="/admin-verify-booking" class="nav-link">Verify Booking</a>
+                                <a href="/admin-guest-point" class="nav-link">Guest Point</a>
+                                <%--<a href="/admin_page/module_function/admin_VerifyGuest.aspx" class="nav-link">Verify Guest</a>--%>
+                            </nav>
+                        </li>
+
+                        <li class="nav-item" <%=hiddenView %>>
+                            <a href="#" class="nav-link with-sub "><i class="typcn typcn-tabs-outline"></i>View</a>
+                            <nav class="az-menu-sub">
+                                <a href="/admin-booking-views" class="nav-link">View Booking</a>
+                                <a href="/admin-guest-views" class="nav-link">View Guest</a>
+                                <a href="/admin-guest-point" class="nav-link">Guest Point</a>
+                            </nav>
+                        </li>
+                    </ul>
+                </div>
+                <!-- az-header-menu -->
+                <div class="az-header-right">
+                    <%--<a href="javascript:void(0);"  class="az-header-search-link"><i class="fas fa-search"></i></a>--%>
+                    <div class="az-header-message">
+                        <a href="app-chat.html"><i class="typcn typcn-messages"></i></a>
+                    </div>
+                    <!-- az-header-message -->
+                    <%--<div class="dropdown az-header-notification">
+                        <a href="#" class="new"><i class="typcn typcn-bell"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header mg-b-20 d-sm-none">
+                                <a href="#" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <h6 class="az-notification-title">Notifications</h6>
+                            <p class="az-notification-text">You have 2 unread notification</p>
+                            <div class="az-notification-list">
+                                <div class="media new">
+                                    <div class="az-img-user"></div>
+                                    <div class="media-body">
+                                        <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
+                                        <span>Mar 15 12:32pm</span>
+                                    </div>
+                                    
+                                </div>
+                              
+                                <div class="media new">
+                                    <div class="az-img-user online"></div>
+                                    <div class="media-body">
+                                        <p><strong>Joyce Chua</strong> just created a new blog post</p>
+                                        <span>Mar 13 04:16am</span>
+                                    </div>
+                                   
+                                </div>
+                               
+                                <div class="media">
+                                    <div class="az-img-user"></div>
+                                    <div class="media-body">
+                                        <p><strong>Althea Cabardo</strong> just created a new blog post</p>
+                                        <span>Mar 13 02:56am</span>
+                                    </div>
+                                  
+                                </div>
+                               
+                                <div class="media">
+                                    <div class="az-img-user"></div>
+                                    <div class="media-body">
+                                        <p><strong>Adrian Monino</strong> added new comment on your photo</p>
+                                        <span>Mar 12 10:40pm</span>
+                                    </div>
+                                   
+                                </div>
+                              
+                            </div>
+                           
+                            <div class="dropdown-footer"><a href="#">View All Notifications</a></div>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>--%>
+                    <!-- az-header-notification -->
+                    <div class="dropdown az-profile-menu">
+                        <a href="#" class="az-img-user">
+                            <img src="/admin_images/avatar.jpg" /></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header d-sm-none">
+                                <a href="#" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <div class="az-header-profile">
+                                <div class="az-img-user">
+                                    <img src="/admin_images/avatar.jpg" />
+                                </div>
+                                <!-- az-img-user -->
+                                <h6><%=adminName %></h6>
+                                <span><%=chucvu %></span>
+                            </div>
+                            <!-- az-header-profile -->
+
+                            <a href="/admin-profile" class="dropdown-item"><i class="typcn typcn-user-outline"></i>My Profile</a>
+                            <%-- <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i>Edit Profile</a>
+                            <a href="" class="dropdown-item"><i class="typcn typcn-time"></i>Activity Logs</a>--%>
+                            <a href="/admin-change-password" class="dropdown-item"><i class="typcn typcn-cog-outline"></i>Change Password</a>
+                            <a href="#" id="btnLogout" runat="server" onserverclick="btnLogout_ServerClick" class="dropdown-item"><i class="typcn typcn-power-outline"></i>Sign Out</a>
+                        </div>
+                        <!-- dropdown-menu -->
+                    </div>
+                </div>
+                <!-- az-header-right -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- az-header -->
+        <asp:ContentPlaceHolder ID="hihead" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="himenu" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="hibodyhead" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="hibodywrapper" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="hibodybottom" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="hifooter" runat="server">
+        </asp:ContentPlaceHolder>
+        <div class="az-footer mg-t-auto">
+            <div class="container">
+                <span>&copy; 2019 Admin Triple</span>
+            </div>
+        </div>
+
+        <script src="/admin_js/js_triple/jquery.min.js"></script>
+        <script src="/admin_js/js_triple/bootstrap.bundle.min.js"></script>
+        <script src="/admin_js/js_triple/jquery.dataTables.min.js"></script>
+        <script src="/admin_js/js_triple/dataTables.dataTables.min.js"></script>
+        <script src="/admin_js/js_triple/dataTables.responsive.min.js"></script>
+        <script src="/admin_js/js_triple/responsive.dataTables.min.js"></script>
+        <script src="/admin_js/js_triple/select2.min.js"></script>
+        <script src="/admin_js/js_triple/datepicker.js"></script>
+        <script src="/admin_js/js_triple/jquery.maskedinput.js"></script>
+        <script src="/admin_js/js_triple/spectrum.js"></script>
+        <script src="/admin_js/js_triple/ion.rangeSlider.min.js"></script>
+        <script src="/admin_js/js_triple/amazeui.datetimepicker.min.js"></script>
+        <script src="/admin_js/js_triple/jquery.simple-dtpicker.js"></script>
+        <script src="/admin_js/js_triple/picker.min.js"></script>
+
+
+        <asp:ContentPlaceHolder ID="hifootersite" runat="server">
+        </asp:ContentPlaceHolder>
+        <script src="/admin_js/js_triple/azia.js"></script>
+        <script>
+            $('input.number').keyup(function (event) {
+
+                // skip for arrow keys
+                if (event.which >= 37 && event.which <= 40) return;
+
+                // format number
+                $(this).val(function (index, value) {
+                    return value
+                        .replace(/\D/g, "")
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                        ;
+                });
+            });
+        </script>
+        <script>
+            function isNumber(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </form>
+</body>
+</html>
